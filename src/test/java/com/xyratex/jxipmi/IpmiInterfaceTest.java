@@ -21,25 +21,40 @@ public class IpmiInterfaceTest {
 	@Before
 	public void initialize() {
 		MockitoAnnotations.initMocks(this);
-		this.cmdShellMock = new CmdShell();
+		//this.cmdShellMock = mock(CmdShell.class);
 	}
 	
 	@Test
-	public void testSendCommand() {
+	public void sendCommandReserveSdrRepositoryTest() {
 		IpmiInterface ipmiInterface = new IpmiInterface(cmdShellMock);
 		
-		List<String> cmd = new ArrayList<String>();
-		
-		cmd.add("ipmitool");
-		cmd.add("lan");
-		cmd.add("print");
-		cmd.add("1");
-		
-		when(cmdShellMock.execCmd(cmd)).thenReturn(0);
-		
-		ipmiInterface.sendCommand(cmd);
+		List<Integer> cmd = new ArrayList<Integer>();
 
+		List<String> ipmitoolCmd = new ArrayList<String>();
 		
-		//when(cmdShellMock.getCommandOutput()).thenReturn()
+		ipmitoolCmd.add("ipmitool");
+		ipmitoolCmd.add("raw");
+		ipmitoolCmd.add("0x0a");
+		ipmitoolCmd.add("0x22");
+		
+		
+		when(cmdShellMock.execCmd(ipmitoolCmd)).thenReturn(0);
+		
+		List<String> mockCmdReturn = new ArrayList<String>();
+		mockCmdReturn.add(" 04 00\n");
+		
+		when(cmdShellMock.getCommandOutput()).thenReturn(mockCmdReturn);
+		
+		ipmiInterface.sendCommand("storage", "reserve_sdr_repository", cmd);
+
+		verify(cmdShellMock).execCmd(ipmitoolCmd);
+		
+		List<Integer> ipmiOutput = ipmiInterface.getOutput();
+		
+		List<Integer> expected = new ArrayList<Integer>();
+		expected.add(4);
+		expected.add(0);
+		
+		assertEquals(expected, ipmiOutput);
 	}
 }
