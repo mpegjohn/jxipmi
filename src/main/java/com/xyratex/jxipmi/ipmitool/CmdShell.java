@@ -9,6 +9,7 @@ import java.util.List;
 public class CmdShell {
 
 	List<String> commandOutput;
+	String exceptionMessageString;
 
 	public List<String> getCommandOutput() {
 		return commandOutput;
@@ -39,7 +40,7 @@ public class CmdShell {
 
 			return process.exitValue();
 		} catch (IOException e) {
-			this.commandOutput.add(e.getMessage());
+			exceptionMessageString = e.getMessage();
 			return 255;
 		}
 	}
