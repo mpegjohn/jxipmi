@@ -22,5 +22,17 @@ public class BitUtilsTest {
 		
 	}
 	
+	@Test
+	public void byteArrayToIntTest() {
+		
+		byte [] byteArray = { (byte)0xaa, (byte)0x55};
+		
+		int actual = BitUtils.byteArrayToInt(byteArray);
+		
+		assertEquals(0xAA55, actual);
+		
+		
+		
+	}
 	
 }

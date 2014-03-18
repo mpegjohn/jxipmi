@@ -2,7 +2,6 @@ package com.xyratex.jxipmi;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +70,7 @@ public class Decoder {
 			
 			if(decodeType.equals("byte")) {
 				
-				byte [] rawSlice = Arrays.copyOfRange(raw, rawByteOffset, numFields -1);
+				byte [] rawSlice = ArrayUtils.subarray(raw, rawByteOffset, rawByteOffset + numFields);
 				ByteBuffer bb = ByteBuffer.wrap(rawSlice);
 				
 				
