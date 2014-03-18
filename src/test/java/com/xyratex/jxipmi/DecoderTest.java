@@ -58,7 +58,7 @@ public class DecoderTest {
 	@Test
 	public void setRawTest() {
 		
-		int [] raw = {
+		byte [] raw = {
 				1, 2, 4, 5
 		};
 		
@@ -73,7 +73,7 @@ public class DecoderTest {
 				};
 		this.decoder.setOverlay(overlay);
 		
-		int [] raw = {
+		byte [] raw = {
 				1, 2, 4, 5
 		};
 		

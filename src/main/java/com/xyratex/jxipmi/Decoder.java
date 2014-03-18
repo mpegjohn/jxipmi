@@ -1,5 +1,6 @@
 package com.xyratex.jxipmi;
 
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,9 +15,9 @@ public class Decoder {
 
 	private String[] overlay;
 	
-	private int [] raw;
+	private byte [] raw;
 
-	public void setRaw(int[] raw) {
+	public void setRaw(byte[] raw) {
 		this.raw = raw;
 	}
 
@@ -61,9 +62,12 @@ public class Decoder {
 			
 			if(decodeType.equals("byte")) {
 				
-				int [] rawSlice = Arrays.copyOfRange(raw, rawByteOffset, numFields -1);
+				byte [] rawSlice = Arrays.copyOfRange(raw, rawByteOffset, numFields -1);
+				ByteBuffer bb = ByteBuffer.wrap(rawSlice);
 				
-				ArrayUtils.reverse(raw);
+				
+				int result = bb.getInt();
+
 			}
 		}
 		
