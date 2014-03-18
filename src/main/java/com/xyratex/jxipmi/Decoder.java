@@ -1,9 +1,11 @@
 package com.xyratex.jxipmi;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.ArrayUtils;
 
 public class Decoder {
@@ -58,6 +60,9 @@ public class Decoder {
 			}
 			
 			if(decodeType.equals("byte")) {
+				
+				int [] rawSlice = Arrays.copyOfRange(raw, rawByteOffset, numFields -1);
+				
 				ArrayUtils.reverse(raw);
 			}
 		}
