@@ -1,8 +1,10 @@
 package com.xyratex.jxipmi;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,6 +12,12 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class Decoder {
+	
+	private List<Integer> decodedData;
+
+	public List<Integer> getDecodedData() {
+		return decodedData;
+	}
 
 	private Map<String, Map<Integer, String>> enums;
 
@@ -31,6 +39,7 @@ public class Decoder {
 
 	public Decoder() {
 		this.enums = new HashMap<String, Map<Integer, String>>();
+		this.decodedData =  new ArrayList<Integer>();
 	}
 
 	public int addEnum(String name, Map<Integer, String> enum_in) {
@@ -67,11 +76,9 @@ public class Decoder {
 				
 				
 				int result = bb.getInt();
+				this.decodedData.add(result);
 
 			}
 		}
-		
-		
 	}
-
 }

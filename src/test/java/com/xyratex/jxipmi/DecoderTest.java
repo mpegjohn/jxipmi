@@ -74,12 +74,14 @@ public class DecoderTest {
 		this.decoder.setOverlay(overlay);
 		
 		byte [] raw = {
-				1, 2, 4, 5
+				4
 		};
 		
 		this.decoder.setRaw(raw);
 		
 		this.decoder.decode();
+		
+		assertEquals(4, (int)this.decoder.getDecodedData().get(0));
 	}	
 
 }
