@@ -84,4 +84,44 @@ public class DecoderTest {
 		assertEquals(4, (int)this.decoder.getDecodedData().get(0));
 	}	
 
+	@Test
+	public void decodeMultiByteTest() {
+
+		String [] overlay = {
+				"byte2", "status",
+				};
+		this.decoder.setOverlay(overlay);
+		
+		byte [] raw = {
+				(byte)0xa4,
+				(byte)0x66
+		};
+		
+		this.decoder.setRaw(raw);
+		
+		this.decoder.decode();
+		
+		assertEquals(0xa466, (int)this.decoder.getDecodedData().get(0));
+	}
+	
+	@Test
+	public void decodeMultiByte2Test() {
+
+		String [] overlay = {
+				"byte2", "status",
+				};
+		this.decoder.setOverlay(overlay);
+		
+		byte [] raw = {
+				(byte)0xff,
+				(byte)0xff
+		};
+		
+		this.decoder.setRaw(raw);
+		
+		this.decoder.decode();
+		
+		assertEquals(0xffff, (int)this.decoder.getDecodedData().get(0));
+	}
+
 }

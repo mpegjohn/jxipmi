@@ -1,6 +1,8 @@
 package com.xyratex.jxipmi;
 
-import java.nio.ByteBuffer;
+import com.xyratex.Util.BitUtils;
+
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,10 +73,10 @@ public class Decoder {
 			if(decodeType.equals("byte")) {
 				
 				byte [] rawSlice = ArrayUtils.subarray(raw, rawByteOffset, rawByteOffset + numFields);
-				ByteBuffer bb = ByteBuffer.wrap(rawSlice);
 				
+				int result = new BigInteger(1,rawSlice).intValue();
 				
-				int result = bb.getInt();
+				//int result = BitUtils.byteArrayToInt(rawSlice);
 				this.decodedData.add(result);
 
 			}

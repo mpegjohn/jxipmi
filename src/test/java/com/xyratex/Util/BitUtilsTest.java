@@ -30,9 +30,6 @@ public class BitUtilsTest {
 		int actual = BitUtils.byteArrayToInt(byteArray);
 		
 		assertEquals(0xAA55, actual);
-		
-		
-		
 	}
 	
 }
